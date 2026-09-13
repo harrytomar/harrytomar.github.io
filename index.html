@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harish Tomar</title>
+<meta name="description" content="Harish Tomar - Senior Software Engineer (Backend) at udChalo. Flight-booking APIs, supplier integrations, and AAA gameplay systems at Ubisoft.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap">
+<style>
+:root{
+  color-scheme: light;
+  --paper:#F5F2E9;
+  --card:#FFFFFF;
+  --ink:#0B0B0B;
+  --ink-2:#3A3A38;
+  --blue:#2F49F0;
+  --lime:#CFF04A;
+  --pink:#FF5CA0;
+  --orange:#FF7A2F;
+  --sky:#7FD4F5;
+  --bd:3px solid var(--ink);
+  --sh:7px 7px 0 var(--ink);
+  --sh-sm:4px 4px 0 var(--ink);
+  --display:"Archivo Black","Helvetica Neue",Arial Black,sans-serif;
+  --sans:"DM Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --mono:"Space Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+
+*{box-sizing:border-box;}
+
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:16.5px;
+  line-height:1.55;
+  overflow-x:hidden;
+  background-image:linear-gradient(var(--paper) 2px,transparent 2px),linear-gradient(90deg,var(--paper) 2px,transparent 2px),linear-gradient(rgba(11,11,11,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(11,11,11,.055) 1px,transparent 1px);
+  background-size:40px 40px,40px 40px,40px 40px,40px 40px;
+}
+
+.wrap{
+  width:100%;
+  max-width:1180px;
+  margin:0 auto;
+  padding-inline:22px;
+}
+
+a{color:var(--ink);text-decoration:none;}
+a:focus-visible,button:focus-visible{outline:4px solid var(--blue);outline-offset:3px;}
+
+.mono{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.08em;}
+
+/* ---------- progress ---------- */
+.progress{
+  position:fixed;top:0;left:0;height:8px;width:100%;
+  transform-origin:0 50%;transform:scaleX(0);
+  background:var(--lime);
+  border-bottom:3px solid var(--ink);
+  z-index:80;pointer-events:none;
+}
+
+/* ---------- header ---------- */
+.site-header{
+  position:sticky;top:0;z-index:70;
+  background:var(--paper);
+  border-bottom:var(--bd);
+}
+.header-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:14px;padding-block:14px;flex-wrap:wrap;
+}
+.brand{
+  font-family:var(--display);
+  font-size:17px;letter-spacing:-.02em;
+  background:var(--ink);color:var(--paper);
+  padding:7px 12px;
+  display:inline-block;
+}
+.brand:hover{background:var(--blue);color:#fff;}
+.clock{
+  font-family:var(--mono);font-size:12px;
+  border:var(--bd);background:var(--lime);
+  padding:5px 10px;white-space:nowrap;
+}
+.nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.nav a{
+  font-family:var(--mono);font-size:12px;text-transform:uppercase;
+  letter-spacing:.06em;
+  border:var(--bd);background:var(--card);
+  padding:7px 11px;
+  transition:transform .12s ease,box-shadow .12s ease,background .12s ease;
+}
+.nav a:hover{background:var(--blue);color:#fff;transform:translate(-2px,-2px);box-shadow:var(--sh-sm);}
+
+/* ---------- shared block ---------- */
+.block{
+  border:var(--bd);
+  background:var(--card);
+  box-shadow:var(--sh);
+}
+
+/* ---------- hero ---------- */
+.hero{
+  display:grid;
+  grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);
+  gap:34px;align-items:start;
+  padding-block:52px 46px;
+}
+.sticker{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.08em;
+  background:var(--lime);border:var(--bd);box-shadow:var(--sh-sm);
+  padding:8px 14px;transform:rotate(-1.6deg);
+}
+.dot{
+  width:9px;height:9px;background:var(--ink);border-radius:50%;
+  animation:blink 1.6s steps(1) infinite;
+}
+@keyframes blink{0%,60%{opacity:1;}61%,100%{opacity:.15;}}
+
+.hero h1{
+  font-family:var(--display);
+  font-size:clamp(54px,11vw,132px);
+  line-height:.86;
+  letter-spacing:-.045em;
+  margin:22px 0 0;
+  text-transform:uppercase;
+}
+.hero h1 .l2{
+  display:inline-block;
+  background:var(--blue);color:#fff;
+  padding:0 14px 6px;
+  transform:rotate(-1deg);
+  margin-top:6px;
+}
+.hero .role{
+  font-size:clamp(17px,2vw,21px);
+  font-weight:500;
+  margin:26px 0 0;max-width:40ch;
+}
+.hero .role b{background:var(--lime);padding:1px 5px;box-decoration-break:clone;-webkit-box-decoration-break:clone;}
+.hero .pitch{margin:16px 0 0;max-width:56ch;color:var(--ink-2);font-size:15.5px;}
+
+.cta-row{display:flex;flex-wrap:wrap;gap:13px;margin-top:30px;}
+.btn{
+  font-family:var(--mono);font-weight:700;font-size:13px;
+  text-transform:uppercase;letter-spacing:.06em;
+  padding:14px 22px;
+  border:var(--bd);background:var(--card);
+  box-shadow:var(--sh-sm);
+  transition:transform .12s ease,box-shadow .12s ease,background .12s ease,color .12s ease;
+}
+.btn:hover{transform:translate(4px,4px);box-shadow:0 0 0 var(--ink);}
+.btn-primary{background:var(--blue);color:#fff;}
+.btn-primary:hover{background:var(--ink);}
+.btn-pink{background:var(--pink);}
+.btn-orange{background:var(--orange);}
+.btn-sky{background:var(--sky);}
+
+/* route card */
+.route-card{border:var(--bd);background:var(--lime);box-shadow:var(--sh);padding:16px;}
+.route-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:8px;}
+.route-head span{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;}
+.route-svg{display:block;width:100%;height:auto;background:var(--card);border:var(--bd);}
+.trail-base{fill:none;stroke:var(--ink);stroke-width:2;stroke-dasharray:6 8;opacity:.3;}
+.trail-live{
+  fill:none;stroke:var(--ink);stroke-width:3.4;stroke-linecap:round;
+  stroke-dasharray:420;stroke-dashoffset:420;
+  animation:draw 7s cubic-bezier(.4,0,.5,1) infinite;
+}
+@keyframes draw{0%{stroke-dashoffset:420;}72%{stroke-dashoffset:0;}92%{stroke-dashoffset:0;opacity:1;}100%{stroke-dashoffset:0;opacity:0;}}
+.node{fill:var(--pink);stroke:var(--ink);stroke-width:3;}
+.code-tag{font-family:var(--mono);font-size:13px;font-weight:700;fill:var(--ink);}
+.city-tag{font-family:var(--mono);font-size:8.5px;fill:var(--ink);opacity:.6;}
+
+/* ---------- marquee ---------- */
+.ticker{
+  border-block:var(--bd);background:var(--ink);
+  overflow:hidden;padding-block:11px;
+}
+.ticker-track{display:flex;gap:0;width:max-content;animation:slide 30s linear infinite;}
+.ticker:hover .ticker-track{animation-play-state:paused;}
+@keyframes slide{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.ticker-item{
+  font-family:var(--mono);font-weight:700;font-size:13px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--lime);
+  white-space:nowrap;padding-inline:22px;
+}
+.ticker-item::after{content:"✦";margin-left:22px;color:var(--pink);}
+
+/* ---------- metrics ---------- */
+.metrics{padding-block:46px;}
+.metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;}
+.metric{
+  border:var(--bd);box-shadow:var(--sh);padding:18px 16px;
+  transition:transform .14s ease,box-shadow .14s ease;
+}
+.metric:hover{transform:translate(4px,4px);box-shadow:0 0 0 var(--ink);}
+.metric:nth-child(1){background:var(--lime);}
+.metric:nth-child(2){background:var(--pink);}
+.metric:nth-child(3){background:var(--sky);}
+.metric:nth-child(4){background:var(--orange);}
+.metric:nth-child(5){background:var(--card);}
+.metric .fig{
+  display:block;font-family:var(--display);
+  font-size:clamp(30px,3.6vw,42px);line-height:1;
+  letter-spacing:-.03em;font-variant-numeric:tabular-nums;
+}
+.metric .cap{display:block;margin-top:10px;font-size:13.5px;line-height:1.35;font-weight:500;}
+
+/* ---------- sections ---------- */
+section{padding-block:46px;}
+.section-head{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:30px;}
+.section-head h2{
+  font-family:var(--display);
+  font-size:clamp(30px,5.2vw,54px);
+  letter-spacing:-.04em;text-transform:uppercase;margin:0;
+  background:var(--ink);color:var(--paper);
+  padding:6px 16px 10px;
+  transform:rotate(-.7deg);
+}
+.section-head .tag{
+  font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.08em;
+  border:var(--bd);background:var(--lime);padding:6px 11px;
+}
+
+/* ---------- experience ---------- */
+.role-block{
+  border:var(--bd);background:var(--card);box-shadow:var(--sh);
+  padding:24px;margin-bottom:22px;
+}
+.role-top{
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  align-items:flex-start;
+  border-bottom:var(--bd);padding-bottom:14px;margin-bottom:16px;
+}
+.role-top h3{font-family:var(--display);font-size:clamp(19px,2.4vw,26px);letter-spacing:-.02em;margin:0;}
+.role-top .org{font-family:var(--mono);font-size:12.5px;text-transform:uppercase;letter-spacing:.07em;margin:6px 0 0;}
+.role-dates{
+  font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;
+  border:var(--bd);background:var(--sky);padding:6px 10px;white-space:nowrap;
+}
+.role-block ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:13px;}
+.role-block li{position:relative;padding-left:26px;font-size:15.5px;color:var(--ink-2);}
+.role-block li::before{
+  content:"";position:absolute;left:0;top:8px;
+  width:11px;height:11px;background:var(--blue);border:2px solid var(--ink);
+}
+.role-block li strong{color:var(--ink);font-weight:700;}
+.num{font-family:var(--mono);font-weight:700;background:var(--lime);padding:1px 5px;white-space:nowrap;}
+
+/* ---------- titles ---------- */
+.titles{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;}
+.title-card{
+  border:var(--bd);box-shadow:var(--sh);background:var(--card);
+  display:flex;flex-direction:column;overflow:hidden;
+  transition:transform .14s ease,box-shadow .14s ease;
+}
+.title-card:hover{transform:translate(5px,5px);box-shadow:0 0 0 var(--ink);}
+.title-art{position:relative;aspect-ratio:16/9;max-width:100%;border-bottom:var(--bd);overflow:hidden;}
+.title-art svg{position:absolute;inset:0;width:100%;height:100%;}
+.t1 .title-art{background:var(--sky);}
+.t2 .title-art{background:var(--orange);}
+.t3 .title-art{background:var(--pink);}
+.title-body{padding:20px;display:flex;flex-direction:column;gap:11px;flex:1;}
+.title-body h3{font-family:var(--display);font-size:22px;letter-spacing:-.025em;margin:0;text-transform:uppercase;}
+.title-body p{margin:0;font-size:14.5px;color:var(--ink-2);}
+.platforms{display:flex;flex-wrap:wrap;gap:7px;}
+.plat{
+  font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;
+  border:2px solid var(--ink);padding:4px 8px;background:var(--paper);
+}
+.title-scale{
+  margin-top:auto;padding-top:12px;border-top:var(--bd);
+  font-family:var(--mono);font-weight:700;font-size:12.5px;letter-spacing:.05em;
+}
+
+/* ---------- skills ---------- */
+.skill-row{
+  display:grid;grid-template-columns:180px 1fr;gap:18px;align-items:center;
+  border:var(--bd);background:var(--card);box-shadow:var(--sh-sm);
+  padding:14px 16px;margin-bottom:12px;
+}
+.skill-key{font-family:var(--mono);font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.08em;}
+.chips{display:flex;flex-wrap:wrap;gap:8px;}
+.chip{
+  font-family:var(--mono);font-size:12.5px;
+  border:2px solid var(--ink);background:var(--paper);
+  padding:5px 11px;
+  transition:transform .12s ease,background .12s ease,box-shadow .12s ease;
+}
+.chip:hover{background:var(--lime);transform:translate(-2px,-2px);box-shadow:var(--sh-sm);}
+a.chip{color:var(--ink);}
+
+/* ---------- projects ---------- */
+.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;}
+.project{
+  border:var(--bd);box-shadow:var(--sh);padding:24px;
+  display:flex;flex-direction:column;gap:12px;
+  transition:transform .14s ease,box-shadow .14s ease;
+}
+.project:hover{transform:translate(5px,5px);box-shadow:0 0 0 var(--ink);}
+.project:nth-child(1){background:var(--lime);}
+.project:nth-child(2){background:var(--card);}
+.project:nth-child(3){background:var(--sky);}
+.project h3{font-family:var(--display);font-size:21px;letter-spacing:-.02em;margin:0;text-transform:uppercase;}
+.project p{margin:0;font-size:14.5px;}
+.project .stack{
+  margin-top:auto;padding-top:10px;
+  font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;
+}
+
+/* ---------- duo ---------- */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:26px;}
+.panel{border:var(--bd);background:var(--card);box-shadow:var(--sh);padding:24px;}
+.entry{padding-block:14px;border-bottom:2px dashed rgba(11,11,11,.3);}
+.entry:last-child{border-bottom:none;}
+.entry h3{font-family:var(--display);font-size:16.5px;margin:0 0 4px;letter-spacing:-.015em;}
+.entry p{margin:0;font-size:14px;color:var(--ink-2);}
+.entry .meta{display:block;margin-top:6px;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.07em;}
+
+/* ---------- contact ---------- */
+.contact{border-top:var(--bd);background:var(--blue);color:#fff;padding-block:56px 34px;}
+.contact h2{
+  font-family:var(--display);
+  font-size:clamp(34px,7vw,78px);line-height:.92;
+  letter-spacing:-.045em;text-transform:uppercase;
+  margin:16px 0 18px;max-width:17ch;
+}
+.contact h2 em{font-style:normal;background:var(--lime);color:var(--ink);padding:0 10px;box-decoration-break:clone;-webkit-box-decoration-break:clone;}
+.contact .sub{margin:0 0 32px;max-width:52ch;font-size:16px;}
+.contact .mono{color:#fff;}
+.contact-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:16px;}
+.contact-item{
+  border:var(--bd);background:var(--card);color:var(--ink);
+  box-shadow:var(--sh);padding:18px;
+  transition:transform .14s ease,box-shadow .14s ease,background .14s ease;
+}
+.contact-item:hover{transform:translate(5px,5px);box-shadow:0 0 0 var(--ink);background:var(--lime);}
+.contact-item .k{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;}
+.contact-item .val{display:block;margin-top:6px;font-weight:700;font-size:15px;word-break:break-word;}
+.colophon{
+  margin-top:40px;padding-top:18px;border-top:3px solid rgba(255,255,255,.35);
+  font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;
+  display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+}
+
+@media (max-width:940px){
+  .hero{grid-template-columns:1fr;gap:30px;}
+  .route-card{max-width:520px;}
+}
+@media (max-width:720px){
+  .skill-row{grid-template-columns:1fr;gap:10px;}
+  .duo{grid-template-columns:1fr;}
+  .role-top{flex-direction:column;}
+  :root{--sh:5px 5px 0 var(--ink);}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition-duration:.01ms !important;}
+  .trail-live{stroke-dashoffset:0;}
+  .progress{display:none;}
+}
+
+.dtoggle{display:inline-flex;border:var(--bd);overflow:hidden;box-shadow:var(--sh-sm);}
+.dtoggle a,.dtoggle span{
+  font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  padding:6px 11px;background:var(--card);color:var(--ink);
+}
+.dtoggle .on{background:var(--blue);color:#fff;}
+.dtoggle a:hover{background:var(--lime);}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#top">HARISH TOMAR</a>
+    <span class="clock" id="clock"></span>
+    <span class="dtoggle"><span class="on">Bold</span><a href="classic.html">Dark</a></span>
+    <nav class="nav">
+      <a href="#experience">Experience</a>
+      <a href="#titles">Titles</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <div class="wrap hero">
+    <div class="hero-copy">
+      <span class="sticker"><span class="dot"></span> Open to backend &amp; systems roles</span>
+      <h1>Harish<br><span class="l2">Tomar</span></h1>
+      <p class="role">Senior Software Engineer <b>(Backend)</b> at udChalo. Previously gameplay programmer at <b>Ubisoft</b>.</p>
+      <p class="pitch">I build high-performance, fault-tolerant flight-booking APIs and supplier integrations — and before that, large-scale gameplay systems for AAA titles played by millions. 4.5+ years of shipping things that hold up under load.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="resume.pdf" download>Download Resume</a>
+        <a class="btn btn-pink" href="mailto:harishtomar986@gmail.com">Email</a>
+        <a class="btn btn-sky" href="https://www.linkedin.com/in/harishtomar9168" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn btn-orange" href="https://github.com/harrytomar" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+
+    <div class="route-card">
+      <div class="route-head"><span>Live Route</span><span>On Time ✦</span></div>
+      <svg class="route-svg" viewBox="0 0 380 250" role="img" aria-label="Illustration of a flight route from Pune to Delhi">
+        <defs><path id="route" d="M 58 196 C 134 66, 252 46, 328 86"></path></defs>
+        <use href="#route" xlink:href="#route" class="trail-base"></use>
+        <use href="#route" xlink:href="#route" class="trail-live"></use>
+        <circle class="node" cx="58" cy="196" r="8"></circle>
+        <text class="code-tag" x="36" y="224">PNQ</text>
+        <text class="city-tag" x="36" y="238">PUNE</text>
+        <circle class="node" cx="328" cy="86" r="8"></circle>
+        <text class="code-tag" x="300" y="62">DEL</text>
+        <text class="city-tag" x="300" y="44">DELHI</text>
+        <g>
+          <polygon points="0,-8 18,0 0,8 5,0" fill="#0B0B0B"></polygon>
+          <animateMotion dur="7s" repeatCount="indefinite" rotate="auto" keyPoints="0;1;1" keyTimes="0;0.72;1" calcMode="linear">
+            <mpath href="#route" xlink:href="#route"></mpath>
+          </animateMotion>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span class="ticker-item">Node.js</span><span class="ticker-item">AWS Lambda</span><span class="ticker-item">DynamoDB</span><span class="ticker-item">SQS</span><span class="ticker-item">Redis</span><span class="ticker-item">Microservices</span><span class="ticker-item">C++</span><span class="ticker-item">TypeScript</span><span class="ticker-item">Java</span><span class="ticker-item">REST APIs</span><span class="ticker-item">Gameplay Systems</span><span class="ticker-item">Android</span>
+      <span class="ticker-item">Node.js</span><span class="ticker-item">AWS Lambda</span><span class="ticker-item">DynamoDB</span><span class="ticker-item">SQS</span><span class="ticker-item">Redis</span><span class="ticker-item">Microservices</span><span class="ticker-item">C++</span><span class="ticker-item">TypeScript</span><span class="ticker-item">Java</span><span class="ticker-item">REST APIs</span><span class="ticker-item">Gameplay Systems</span><span class="ticker-item">Android</span>
+    </div>
+  </div>
+
+  <div class="wrap metrics">
+    <div class="metrics-grid">
+      <div class="metric">
+        <span class="fig" data-count>200–250</span>
+        <span class="cap">bookings/day from supplier integrations I led</span>
+      </div>
+      <div class="metric">
+        <span class="fig" data-count>200+</span>
+        <span class="cap">care products sold daily via Trip Delay Care</span>
+      </div>
+      <div class="metric">
+        <span class="fig" data-count>60–70</span>
+        <span class="cap">bookings/day recovered from payment drop-off</span>
+      </div>
+      <div class="metric">
+        <span class="fig" data-count>300–400</span>
+        <span class="cap">new users/day playing udChalo Games</span>
+      </div>
+      <div class="metric">
+        <span class="fig" data-count>2M+</span>
+        <span class="cap">players reached by systems shipped at Ubisoft</span>
+      </div>
+    </div>
+  </div>
+
+  <section id="experience" class="wrap">
+    <div class="section-head">
+      <h2>Experience</h2>
+      <span class="tag">2021 — Present</span>
+    </div>
+
+    <article class="role-block">
+      <div class="role-top">
+        <div>
+          <h3>Senior Software Engineer (Backend)</h3>
+          <p class="org">udChalo · Pune, India</p>
+        </div>
+        <span class="role-dates">Feb 2026 — Present</span>
+      </div>
+      <ul>
+        <li>Led end-to-end integration of <strong>Akbar Travels</strong>, <strong>TripShop</strong> and <strong>Fly91</strong> as new flight suppliers — search, pricing, session/token management, booking, ancillaries and cancellation flows across supplier microservices and core flight APIs. Enabled defence/LTC inventory on production with a zero-downtime rollout, together driving <span class="num">200–250</span> bookings/day across all three.</li>
+        <li>Built <strong>Trip Delay Care</strong>, a real-time flight delay detection and automated notification system that tracks live flight status, proactively alerts affected passengers and triggers compensation workflows — now selling <span class="num">200+</span> care products every day.</li>
+        <li>Architected and owned <strong>Manage Booking / Saved Booking</strong> end-to-end: users can cart a selected flight and return to it later, with a new <strong>Reprice API</strong> fetching live fares before checkout, plus booking-in-progress lifecycle, duplicate-itinerary deactivation, a 4-hour save window and departure-based eligibility filters.</li>
+        <li>Built a <strong>Resume Booking</strong> drop-off recovery API that detects users abandoning at the payment page after adding ancillaries, then notifies them to resume straight to checkout with add-ons stripped — recovering an extra <span class="num">60–70</span> bookings/day.</li>
+        <li>Owned and led <strong>udChalo Games</strong> (<a href="https://www.udchalo.com/games" target="_blank" rel="noopener"><u>udchalo.com/games</u></a>), an in-app mini-games suite that boosts engagement and rewards frequent travelers — now bringing <span class="num">300–400</span> new users/day.</li>
+        <li>Implemented <strong>Frequent Flyer (Air India)</strong> support in the booking pipeline — passenger FF capture, validation, supplier payload mapping and persistence — improving loyalty booking completion.</li>
+        <li>Resolved production issues across search, price, save and book flows during supplier go-live, improving error handling, fare edge cases and booking stability under load.</li>
+      </ul>
+    </article>
+
+    <article class="role-block">
+      <div class="role-top">
+        <div>
+          <h3>Gameplay Programmer</h3>
+          <p class="org">Ubisoft Entertainment · Pune, India</p>
+        </div>
+        <span class="role-dates">Apr 2025 — Feb 2026</span>
+      </div>
+      <ul>
+        <li>Engineered a robust immunity system affecting over <span class="num">1M</span> players, enabling real-time toggling of entity protection states with dynamic UI feedback and disengage logic — giving designers flexible gameplay tuning.</li>
+        <li>Developed a runtime AI weapon-switching system for fort-based combat with data-driven pattern definitions, cutting scripting overhead by <span class="num">40%</span> and streamlining QA debugging through custom debug toggles. Used in <span class="num">200K+</span> weekly battles.</li>
+      </ul>
+    </article>
+
+    <article class="role-block">
+      <div class="role-top">
+        <div>
+          <h3>Junior Programmer</h3>
+          <p class="org">Ubisoft Entertainment · Pune, India</p>
+        </div>
+        <span class="role-dates">Jul 2021 — Mar 2025</span>
+      </div>
+      <ul>
+        <li>Built a modular contract and event system for live content — players join, abandon and complete events with state-aware notifications. Scaled to <span class="num">2M+</span> users and cut redundant alerts by <span class="num">60%</span>.</li>
+        <li>Developed a data-driven AI behavior engine supporting designer-defined combat logic such as mine formation spawning and contributor-specific targeting, powering <span class="num">500K+</span> battles.</li>
+        <li>Designed and implemented UI features for the Rocksmith Tuner Android app including Share, Rate Us and Eco Mode — improving onboarding and lifting installs <span class="num">15–20%</span> across <span class="num">50K+</span> monthly active users.</li>
+        <li>Enhanced the in-game map journal with filterable tabs and categorized views, improving seasonal content navigation for <span class="num">2M+</span> players.</li>
+        <li>Created in-game analytics hooks for AI, item usage and player performance, enabling live telemetry and balancing at <span class="num">2M+</span> player scale.</li>
+        <li>Resolved <span class="num">120+</span> critical UI/UX and gameplay bugs on the AAA title <em>Skull &amp; Bones</em>, improving stability and visual polish.</li>
+      </ul>
+    </article>
+  </section>
+
+  <section id="titles" class="wrap">
+    <div class="section-head">
+      <h2>Titles Shipped</h2>
+      <span class="tag">Ubisoft</span>
+    </div>
+    <div class="titles">
+
+      <article class="title-card t1">
+        <div class="title-art">
+          <svg viewBox="0 0 320 180" role="img" aria-label="Animated sea and compass illustration">
+            <g class="compass" opacity=".9">
+              <circle cx="250" cy="48" r="24" fill="none" stroke="#0B0B0B" stroke-width="3"></circle>
+              <path d="M250 26 L255 48 L250 70 L245 48 Z" fill="#0B0B0B"></path>
+            </g>
+            <g transform="translate(0,106)"><g class="wave-g c"><path d="M0,0 q25,-13 50,0 t50,0 t50,0 t50,0 t50,0 t50,0 t50,0 t50,0 t50,0 t50,0 t50,0 t50,0" fill="none" stroke="#0B0B0B" stroke-width="2.4" opacity=".35"></path></g></g>
+            <g transform="translate(0,126)"><g class="wave-g b"><path d="M0,0 q25,-13 50,0 t50,0 t50,0 t50,0 t50,0 t50,0 t50,0 t50,0 t50,0 t50,0 t50,0 t50,0" fill="none" stroke="#0B0B0B" stroke-width="3" opacity=".6"></path></g></g>
+            <g transform="translate(0,148)"><g class="wave-g"><path d="M0,0 q25,-13 50,0 t50,0 t50,0 t50,0 t50,0 t50,0 t50,0 t50,0 t50,0 t50,0 t50,0 t50,0" fill="none" stroke="#0B0B0B" stroke-width="3.6"></path></g></g>
+          </svg>
+        </div>
+        <div class="title-body">
+          <h3>Skull &amp; Bones</h3>
+          <div class="platforms"><span class="plat">PC</span><span class="plat">Xbox Series X|S</span><span class="plat">PS5</span></div>
+          <p>AAA open-world naval action. Built gameplay systems here — entity immunity states, runtime AI weapon-switching for fort combat, a data-driven AI behaviour engine, map-journal navigation, Photo Mode UX and live telemetry hooks — plus 120+ critical fixes.</p>
+          <span class="title-scale">2M+ PLAYERS</span>
+        </div>
+      </article>
+
+      <article class="title-card t2">
+        <div class="title-art">
+          <svg viewBox="0 0 320 180" role="img" aria-label="Animated guitar tuner dial">
+            <g stroke="#0B0B0B" stroke-width="3">
+              <line x1="80" y1="74" x2="73" y2="62"></line>
+              <line x1="112" y1="56" x2="108" y2="44"></line>
+              <line x1="160" y1="50" x2="160" y2="36"></line>
+              <line x1="208" y1="56" x2="212" y2="44"></line>
+              <line x1="240" y1="74" x2="247" y2="62"></line>
+            </g>
+            <path d="M74 118 A 90 90 0 0 1 246 118" fill="none" stroke="#0B0B0B" stroke-width="2.6" opacity=".4"></path>
+            <g class="tune-ok" opacity="0">
+              <path d="M148 150 l8 9 l16 -19" fill="none" stroke="#0B0B0B" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"></path>
+            </g>
+            <g class="needle"><line x1="160" y1="130" x2="160" y2="58" stroke="#0B0B0B" stroke-width="5" stroke-linecap="round"></line></g>
+            <circle cx="160" cy="130" r="8" fill="#FF5CA0" stroke="#0B0B0B" stroke-width="3"></circle>
+          </svg>
+        </div>
+        <div class="title-body">
+          <h3>Rocksmith Tuner</h3>
+          <div class="platforms"><span class="plat">Android</span><span class="plat">iOS</span></div>
+          <p>Companion guitar-tuner app. Designed and shipped the Share, Rate Us and Eco Mode features, sharpening onboarding and lifting installs by 15–20%.</p>
+          <span class="title-scale">50K+ MONTHLY ACTIVE USERS</span>
+        </div>
+      </article>
+
+      <article class="title-card t3">
+        <div class="title-art">
+          <svg viewBox="0 0 320 180" role="img" aria-label="Animated audio equalizer">
+            <g fill="#0B0B0B">
+              <rect class="eqbar" x="24" y="44" width="14" height="96"></rect>
+              <rect class="eqbar" x="48" y="44" width="14" height="96"></rect>
+              <rect class="eqbar" x="72" y="44" width="14" height="96"></rect>
+              <rect class="eqbar" x="96" y="44" width="14" height="96"></rect>
+              <rect class="eqbar" x="120" y="44" width="14" height="96"></rect>
+              <rect class="eqbar" x="144" y="44" width="14" height="96"></rect>
+              <rect class="eqbar" x="168" y="44" width="14" height="96"></rect>
+              <rect class="eqbar" x="192" y="44" width="14" height="96"></rect>
+              <rect class="eqbar" x="216" y="44" width="14" height="96"></rect>
+              <rect class="eqbar" x="240" y="44" width="14" height="96"></rect>
+              <rect class="eqbar" x="264" y="44" width="14" height="96"></rect>
+              <rect class="eqbar" x="288" y="44" width="14" height="96"></rect>
+            </g>
+          </svg>
+        </div>
+        <div class="title-body">
+          <h3>Rocksmith+</h3>
+          <div class="platforms"><span class="plat">PC</span><span class="plat">Mobile</span></div>
+          <p>Live-service music-learning platform. Contributed to live content systems — joinable, abandonable events with state-aware notifications — and player-facing feature work across platforms.</p>
+          <span class="title-scale">2M+ USERS</span>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="skills" class="wrap">
+    <div class="section-head">
+      <h2>Skills</h2>
+      <span class="tag">Stack</span>
+    </div>
+    <div class="skill-row">
+      <span class="skill-key">Languages</span>
+      <div class="chips"><span class="chip">C++</span><span class="chip">JavaScript</span><span class="chip">TypeScript</span><span class="chip">Java</span></div>
+    </div>
+    <div class="skill-row">
+      <span class="skill-key">Backend &amp; APIs</span>
+      <div class="chips"><span class="chip">Node.js</span><span class="chip">REST APIs</span><span class="chip">Microservices</span></div>
+    </div>
+    <div class="skill-row">
+      <span class="skill-key">Cloud &amp; Infra</span>
+      <div class="chips"><span class="chip">AWS Lambda</span><span class="chip">DynamoDB</span><span class="chip">SQS</span><span class="chip">Redis</span></div>
+    </div>
+    <div class="skill-row">
+      <span class="skill-key">Mobile</span>
+      <div class="chips"><span class="chip">Android</span><span class="chip">XML Layouts</span></div>
+    </div>
+    <div class="skill-row">
+      <span class="skill-key">Tools</span>
+      <div class="chips"><span class="chip">Git</span><span class="chip">Postman</span><span class="chip">Perforce</span></div>
+    </div>
+    <div class="skill-row">
+      <span class="skill-key">Profiles</span>
+      <div class="chips">
+        <a class="chip" href="https://auth.geeksforgeeks.org/user/harishtomar/practice/" target="_blank" rel="noopener">GeeksforGeeks</a>
+        <a class="chip" href="https://codeforces.com/profile/harry_28" target="_blank" rel="noopener">Codeforces</a>
+        <a class="chip" href="https://leetcode.com/u/harry_28/" target="_blank" rel="noopener">LeetCode</a>
+        <a class="chip" href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=4810031" target="_blank" rel="noopener">SSRN</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="wrap">
+    <div class="section-head">
+      <h2>Projects</h2>
+      <span class="tag">Shipped</span>
+    </div>
+    <div class="projects">
+      <div class="project">
+        <h3>udChalo Games</h3>
+        <p>In-app mini-games suite built to boost engagement and reward frequent travelers. Live in production, bringing 300–400 new users a day.</p>
+        <span class="stack"><a href="https://www.udchalo.com/games" target="_blank" rel="noopener"><u>udchalo.com/games →</u></a></span>
+      </div>
+      <div class="project">
+        <h3>Power Tic Tac Toe</h3>
+        <p>A power-based twist on Tic Tac Toe with bomb, shield and swap abilities for added strategy. PvP and PvAI modes, monetized with Google AdMob.</p>
+        <span class="stack">Java · XML</span>
+      </div>
+      <div class="project">
+        <h3>Loop Tap Reflex</h3>
+        <p>A two-player reflex tap game built around rotating targets and dynamic timers — simple loop, tight feedback.</p>
+        <span class="stack">Android</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="duo">
+      <div class="panel">
+        <div class="section-head"><h2>Education</h2></div>
+        <div class="entry">
+          <h3>Army Institute of Technology</h3>
+          <p>B.E. Information Technology — GPA 9.11, First Class with Distinction</p>
+          <span class="meta">2017 – 2021 · Pune</span>
+        </div>
+        <div class="entry">
+          <h3>Rawal Convent School (CBSE)</h3>
+          <p>Class XII: 94.2% · Class X: 9.4 CGPA</p>
+          <span class="meta">2013 – 2016 · Faridabad</span>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="section-head"><h2>Awards</h2></div>
+        <div class="entry">
+          <h3>Sarcasm Detection &amp; Explainable AI</h3>
+          <p>Published research — SSRN</p>
+        </div>
+        <div class="entry">
+          <h3>ICCIP 2021</h3>
+          <p>Conference paper</p>
+        </div>
+        <div class="entry">
+          <h3>Credit Suisse Coding Contest</h3>
+          <p>Global Rank 187</p>
+        </div>
+        <div class="entry">
+          <h3>AI/ML Certification</h3>
+          <p>Professional certification</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact" class="contact">
+  <div class="wrap">
+    <span class="mono">Get in touch</span>
+    <h2>Let's build something that <em>holds up under load.</em></h2>
+    <p class="sub">If you're working on systems where reliability and throughput actually matter, I'd be glad to talk.</p>
+    <div class="contact-list">
+      <a class="contact-item" href="mailto:harishtomar986@gmail.com">
+        <span class="k">Email</span>
+        <span class="val">harishtomar986@gmail.com</span>
+      </a>
+      <a class="contact-item" href="tel:+918826621369">
+        <span class="k">Phone</span>
+        <span class="val">+91 88266 21369</span>
+      </a>
+      <a class="contact-item" href="https://www.linkedin.com/in/harishtomar9168" target="_blank" rel="noopener">
+        <span class="k">LinkedIn</span>
+        <span class="val">in/harishtomar9168</span>
+      </a>
+      <a class="contact-item" href="https://github.com/harrytomar" target="_blank" rel="noopener">
+        <span class="k">GitHub</span>
+        <span class="val">harrytomar</span>
+      </a>
+    </div>
+    <div class="colophon">
+      <span>Harish Tomar — Pune, India</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+/* animated art */
+.wave-g{animation:waveShift 9s linear infinite;}
+.wave-g.b{animation-duration:13s;}
+.wave-g.c{animation-duration:18s;}
+@keyframes waveShift{from{transform:translateX(0);}to{transform:translateX(-200px);}}
+.title-card:hover .wave-g{animation-duration:5s;}
+.compass{transform-box:fill-box;transform-origin:center;animation:spin 30s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.needle{transform-box:fill-box;transform-origin:bottom center;animation:tune 5.2s cubic-bezier(.34,0,.18,1) infinite;}
+@keyframes tune{
+  0%{transform:rotate(-36deg);}16%{transform:rotate(27deg);}31%{transform:rotate(-15deg);}
+  46%{transform:rotate(7deg);}60%{transform:rotate(-3deg);}72%,100%{transform:rotate(0deg);}
+}
+.tune-ok{animation:okFlash 5.2s ease infinite;}
+@keyframes okFlash{0%,66%{opacity:0;}76%,96%{opacity:1;}100%{opacity:0;}}
+.eqbar{transform-box:fill-box;transform-origin:center bottom;animation:eq 1.5s ease-in-out infinite;}
+.eqbar:nth-child(1){animation-delay:-.1s;}
+.eqbar:nth-child(2){animation-delay:-.5s;}
+.eqbar:nth-child(3){animation-delay:-.9s;}
+.eqbar:nth-child(4){animation-delay:-.3s;}
+.eqbar:nth-child(5){animation-delay:-.75s;}
+.eqbar:nth-child(6){animation-delay:-1.2s;}
+.eqbar:nth-child(7){animation-delay:-.2s;}
+.eqbar:nth-child(8){animation-delay:-.95s;}
+.eqbar:nth-child(9){animation-delay:-.45s;}
+.eqbar:nth-child(10){animation-delay:-1.05s;}
+.eqbar:nth-child(11){animation-delay:-.6s;}
+.eqbar:nth-child(12){animation-delay:-.25s;}
+@keyframes eq{0%,100%{transform:scaleY(.18);}50%{transform:scaleY(1);}}
+.title-card:hover .eqbar{animation-duration:.7s;}
+</style>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var clockEl = document.getElementById('clock');
+  if (clockEl) {
+    var fmt = new Intl.DateTimeFormat('en-GB', {timeZone:'Asia/Kolkata', hour:'2-digit', minute:'2-digit', hour12:false});
+    var tick = function(){ clockEl.textContent = 'PUNE ' + fmt.format(new Date()) + ' IST'; };
+    tick(); setInterval(tick, 10000);
+  }
+
+  var bar = document.getElementById('progress');
+  if (bar && !reduce) {
+    var queued = false;
+    var draw = function(){
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      var p = max > 0 ? window.scrollY / max : 0;
+      bar.style.transform = 'scaleX(' + Math.min(Math.max(p,0),1) + ')';
+      queued = false;
+    };
+    window.addEventListener('scroll', function(){
+      if (!queued) { queued = true; requestAnimationFrame(draw); }
+    }, {passive:true});
+    draw();
+  }
+
+  if (reduce) return;
+  Array.prototype.forEach.call(document.querySelectorAll('[data-count]'), function(fig){
+    var original = fig.textContent;
+    var parts = original.match(/(\d+|\D+)/g) || [];
+    var targets = [];
+    fig.textContent = '';
+    parts.forEach(function(part){
+      if (/^\d+$/.test(part)) {
+        var s = document.createElement('span');
+        s.textContent = '0';
+        fig.appendChild(s);
+        targets.push({el:s, to:parseInt(part,10)});
+      } else {
+        fig.appendChild(document.createTextNode(part));
+      }
+    });
+    var start = null, DUR = 1200;
+    function step(ts){
+      if (start === null) start = ts;
+      var p = Math.min((ts - start)/DUR, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      targets.forEach(function(t){ t.el.textContent = Math.round(t.to * eased); });
+      if (p < 1) requestAnimationFrame(step); else fig.textContent = original;
+    }
+    requestAnimationFrame(step);
+  });
+})();
+</script>
+
+</body>
+</html>
